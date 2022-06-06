@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GCP Hello World Demo Project</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/Open_Sans.css" media="all">
+</head>
+<body>
+<div class="bodyDivWithScroll" id="fullPage" dir="ltr">
+    <div id="pageWhiteBox" style="">
+        <div id="pageHeader" th:text="${messageContent}"></div>
+
+        <div id="pageFooter">
+            <div>Message ID: <span th:text="${messageId}"></span></div>
+            <div>Message Created: <span th:text="${messageCreationTimestamp}"></span></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
