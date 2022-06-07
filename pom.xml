@@ -117,31 +117,12 @@
                 <version>3.2.1</version>
                 <configuration>
                     <container>
-                        <format>OCI</format>
+                        <format>Docker</format>
                     </container>
                     <from>
                         <image>eclipse-temurin:17-jre</image>
                     </from>
                     <to>
-                        <!-- Set environment variable GOOGLE_APPLICATION_CREDENTIALS to the json service account key -->
-                        <!-- USE SECRET ENV VAR FOR PROJECT ID FROM GITHUB ACTIONS?
-                        GOOGLE_PROJECT_ID = FIXME
-                        GOOGLE_ARTIFACT_REGISTRY_REGION = us-central1
-                        GOOGLE_ARTIFACT_REGISTRY_REPO = gcp-hello-world-docker-dev
-
-                        github actions secrets can be set through terraform
-                        make a separate terraform infra plan to...
-                        - create the gcp project (or just give the project id of a new empty one)
-                            !! SA can't make a new project if there is no Organization resource (requires cloud identity), so make a project manually nad pass the id
-                        - create the artifact registry
-                        - initialize teh project code git repo, setting secrets
-
-                        *** NEED TO ADD THESE ENV VARS TO THE GITHUB REPO THEN FINISH THE GITHUB WORKFLOW
-
-                        then the project code can be pushed to the git repo and github actions can build and push the container image,
-                        then I can execute the app terraform to deploy the app
-                        -->
-                        <!-- replace these 3 envs with just one env for the image url maybe? check the tf output for the module -->
                         <image>${env.GOOGLE_ARTIFACT_REGISTRY_DOCKER_REPO}/${project.artifactId}:${project.version}</image>
                     </to>
                 </configuration>
