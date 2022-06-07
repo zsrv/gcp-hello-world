@@ -6,6 +6,8 @@ to Google Cloud Platform.
 The application connects to a Google Cloud Spanner instance to retrieve the latest message in a database,
 and displays the message on a web page. API endpoints to list messages and set new messages are also available.
 
+Spring Boot application properties are retrieved from  
+
 A live deployment of the application requires you to have a Google Cloud Platform account with billing enabled.
 However, the application can be run in a "local" mode, where the application will connect to a Google Cloud
 Spanner emulator and no Google Cloud Platform credentials need to be configured.
@@ -31,8 +33,8 @@ The steps listed here will run the emulator on your local machine using the gclo
 Other ways to run the emulator are described in
 the [Cloud Spanner documentation](https://cloud.google.com/spanner/docs/emulator).
 
-The quick start described here assumes the gcloud CLI is already installed. If not, see
-the documentation above for details. 
+This quick start guide requires the gcloud CLI to be installed. If the gcloud CLI is
+not installed, see the documentation above for details.
 
 Start the emulator:
 
@@ -65,8 +67,8 @@ The Spanner emulator is now ready to be used by the application.
 
 ## Application
 
-The [Maven Wrapper](https://maven.apache.org/wrapper/) is included in the project as a convenient way to use Maven
-without having to first install it.
+The [Maven Wrapper](https://maven.apache.org/wrapper/) is included in the project as a convenient way to use
+Maven without having to first install it.
 
 Build the application, specifying the local profile (used when the tests are run).
 The Cloud Spanner emulator must be running during the package phase since a connection to Cloud Spanner will
@@ -75,7 +77,7 @@ be attempted during the test phase. Alternatively, the tests can be skipped.
 ```shell
 ./mvnw clean package -Dspring.cloud.bootstrap.name=bootstrap-local
 
-# Alternatively, skip the tests so packaging doesn't fail if the Cloud Spanner Emulator is not running 
+# Alternatively, skip the tests so packaging doesn't fail if the Cloud Spanner emulator is not running 
 ./mvnw clean package -DskipTests
 ```
 
@@ -95,7 +97,7 @@ The main web page will display the most recent message in the database, along wi
 the message ID and the time the message was added to the database. If there are no messages,
 or an error occurred, an error page will display instead.
 
-Messages can be added using the [API endpoints](#api-endpoints).
+Messages can be added to the database using the [API endpoints](#api-endpoints).
 
 ## API Endpoints
 
