@@ -1,0 +1,38 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: build
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and push container image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: auth
+        name: Authenticate to Google Cloud Platform
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      - name: Build and push container image
+        run: mvn --batch-mode compile jib:build -DskipTests
+        env:
+          GOOGLE_ARTIFACT_REGISTRY_DOCKER_REPO: '${{ secrets.GOOGLE_ARTIFACT_REGISTRY_DOCKER_REPO }}'
